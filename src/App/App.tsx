@@ -2,9 +2,9 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./Header/Header";
-import CoinPage from "./Main/CoinList/CoinPage/CoinPage";
-import Main from "./Main/Main";
+import Header from "../Header/Header";
+import CoinPage from "../Main/CoinList/CoinPage/CoinPage";
+import Main from "../Main/Main";
 
 function App() {
   const [listOfCoins, setListOfCoins] = useState([]);
