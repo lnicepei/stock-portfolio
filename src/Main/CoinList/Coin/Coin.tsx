@@ -1,38 +1,18 @@
-import React from "react";
 import styled from "styled-components";
 
 const StyledCoin = styled.div`
-  background-color: red;
+  background-color: white;
   height: 50px;
+  margin-bottom: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
 `;
 
-const Coin = ({ setUserPortfolio, rank, name, price, symbol }) => {
-  const buy = () => {
-    setUserPortfolio((prevUserPortfolio) => {
-      if (prevUserPortfolio.some((coin) => coin.name === name.toLowerCase())) {
-        return prevUserPortfolio.map((coin) => {
-          if (coin.name === name.toLowerCase()) {
-            return {
-              ...coin,
-              quantity: coin.quantity + 1,
-            };
-          }
-          return coin;
-        });
-      }
-
-      return prevUserPortfolio.concat({
-        name: name.toLowerCase(),
-        quantity: 1,
-        buyPrice: +price,
-      });
-    });
-  };
-
+const Coin = ({ coin, handleBuyMenuOpen, handleCoinMenuOpen }) => {
   return (
-    <StyledCoin>
-      <button onClick={buy}></button>
-      {rank}, {name}, {price}, {symbol}
+    <StyledCoin onClick={handleCoinMenuOpen}>
+      <button onClick={handleBuyMenuOpen}>Buy</button>
+      {coin.rank}, {coin.name}, {coin.price}, {coin.symbol}
     </StyledCoin>
   );
 };
