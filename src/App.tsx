@@ -1,9 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import { useEffect, useState } from "react";
 import Axios from "axios";
-import Coin from "./Main/CoinList/Coin/Coin";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 import Header from "./Header/Header";
+import CoinPage from "./Main/CoinList/CoinPage/CoinPage";
+import Main from "./Main/Main";
 
 function App() {
   const [listOfCoins, setListOfCoins] = useState([]);
@@ -26,6 +27,11 @@ function App() {
       buyPrice: 278.4492642845494104,
     },
   ]);
+  const [currentCoin, setCurrentCoin] = useState({
+    name: "",
+    quantity: 0,
+    buyPrice: 0,
+  });
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -54,33 +60,39 @@ function App() {
     }
   };
 
-  console.log(listOfCoins);
-
   return (
     <div className="App">
-      {/* <div className="cryptoHeader">
+      <BrowserRouter>
         <Routes>
-          <Route></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header
+                  listOfCoins={listOfCoins}
+                  userPortfolio={userPortfolio}
+                  setUserPortfolio={setUserPortfolio}
+                />
+                <Main
+                  currentCoin={currentCoin}
+                  setCurrentCoin={setCurrentCoin}
+                  listOfCoins={listOfCoins}
+                  setUserPortfolio={setUserPortfolio}
+                />
+              </>
+            }
+          />
+          <Route
+            path=":coinId"
+            element={
+              <CoinPage
+                coinInfo={{ ...currentCoin }}
+                listOfCoins={listOfCoins}
+              />
+            }
+          />
         </Routes>
-      </div> */}
-      <Header
-        listOfCoins={listOfCoins}
-        userPortfolio={userPortfolio}
-        setUserPortfolio={setUserPortfolio}
-      />
-      <div className="cryptoDisplay">
-        {listOfCoins.map((coin) => {
-          return (
-            <Coin
-              setUserPortfolio={setUserPortfolio}
-              rank={coin.rank}
-              name={coin.name}
-              symbol={coin.symbol}
-              price={coin.priceUsd.substring(0, 7)}
-            />
-          );
-        })}
-      </div>
+      </BrowserRouter>
     </div>
   );
 }
