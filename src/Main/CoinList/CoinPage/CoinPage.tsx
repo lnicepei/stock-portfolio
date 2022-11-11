@@ -2,6 +2,7 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Card } from "../../../App/App.styles";
 import AdditionalCoinInfo from "./AdditionalCoinInfo/AdditionalCoinInfo";
 import RenderLineChart from "./RenderLineChart/RenderLineChart";
 
@@ -32,7 +33,7 @@ const CoinPage = ({ coinInfo, listOfCoins }) => {
 
   return (
     <StyledCoinPage>
-      {fullInfo?.id}
+      <Card>{fullInfo?.id}</Card>
       <RenderLineChart coinHistory={coinHistory} />
       <AdditionalCoinInfo additionalCoinInfo={additionalCoinInfo} />
     </StyledCoinPage>
