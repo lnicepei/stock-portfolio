@@ -3,7 +3,7 @@ import UserCoin from "./UserCoin/UserCoin";
 
 const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
   const userCoins = userPortfolio.map((coin) => (
-    <UserCoin coin={coin} setUserPortfolio={setUserPortfolio} />
+    <UserCoin key={coin.name} coin={coin} setUserPortfolio={setUserPortfolio} />
   ));
 
   const previousUserMoney = userPortfolio.reduce(
@@ -19,7 +19,6 @@ const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
     0
   );
 
-  console.log(userPortfolio);
   return (
     <div>
       <div>
