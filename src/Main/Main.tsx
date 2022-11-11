@@ -25,13 +25,9 @@ const Main = ({
   const buy = () => {
     setIsBuyMenuOpen(false);
     setUserPortfolio((prevUserPortfolio) => {
-      if (
-        prevUserPortfolio.some(
-          (coin) => coin.name === currentCoin.name.toLowerCase()
-        )
-      ) {
+      if (prevUserPortfolio.some((coin) => coin.id === currentCoin.id)) {
         return prevUserPortfolio.map((coin) => {
-          if (coin.name === currentCoin.name.toLowerCase()) {
+          if (coin.id === currentCoin.id) {
             return {
               ...coin,
               quantity: +coin.quantity + +currentCoin.quantity,
@@ -42,9 +38,9 @@ const Main = ({
       }
 
       return prevUserPortfolio.concat({
-        name: currentCoin.name.toLowerCase(),
+        id: currentCoin.id,
         quantity: +currentCoin.quantity,
-        buyPrice: +listOfCoins.find((coin) => coin.name === currentCoin.name)
+        buyPrice: +listOfCoins.find((coin) => coin.id === currentCoin.id)
           .priceUsd,
       });
     });
@@ -55,7 +51,7 @@ const Main = ({
     setCurrentCoin((prevCurrentCoin) => {
       return {
         ...prevCurrentCoin,
-        name: coin.name,
+        id: coin.id,
       };
     });
     setIsBuyMenuOpen(true);
@@ -83,7 +79,7 @@ const Main = ({
       {listOfCoins.map((coin) => {
         return (
           <Coin
-            key={coin.name}
+            key={coin.id}
             coin={coin}
             handleBuyMenuOpen={(e) => handleBuyMenuOpen(e, coin)}
             handleCoinMenuOpen={(e) => handleCoinMenuOpen(e, coin)}
