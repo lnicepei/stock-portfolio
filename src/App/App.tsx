@@ -12,23 +12,23 @@ function App() {
   const [fetching, setFetching] = useState(true);
   const [userPortfolio, setUserPortfolio] = useState(() => [
     {
-      name: "bitcoin",
+      id: "bitcoin",
       quantity: 0.14231,
       buyPrice: 16705.1939777214815769,
     },
     {
-      name: "tether",
+      id: "tether",
       quantity: 0.1234231,
       buyPrice: 0.9995246329709383,
     },
     {
-      name: "binance-coin",
+      id: "binance-coin",
       quantity: 0.1234231,
       buyPrice: 278.4492642845494104,
     },
   ]);
   const [currentCoin, setCurrentCoin] = useState({
-    name: "",
+    id: "",
     quantity: 0,
     buyPrice: 0,
   });
