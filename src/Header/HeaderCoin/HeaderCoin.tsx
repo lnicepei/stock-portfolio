@@ -1,10 +1,11 @@
 import React from "react";
+import { Card } from "../../App/App.styles";
 
-const HeaderCoin = ({ rank, name, price, symbol }) => {
+const HeaderCoin = ({ rank, id, price, symbol }) => {
   return (
-    <div>
-      {rank}, {name}, {price}, {symbol}
-    </div>
+    <Card>
+      {rank}, {id}, {price}, {symbol}
+    </Card>
   );
 };
 

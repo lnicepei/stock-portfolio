@@ -16,9 +16,9 @@ const Header = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
     .slice(0, 3)
     .map((coin) => (
       <HeaderCoin
-        key={coin.name}
+        key={coin.id}
         rank={coin.rank}
-        name={coin.name}
+        id={coin.id}
         symbol={coin.symbol}
         price={coin.priceUsd.substring(0, 7)}
       />

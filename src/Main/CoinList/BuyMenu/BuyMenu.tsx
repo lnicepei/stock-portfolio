@@ -53,7 +53,7 @@ const BuyMenu = ({
       <StyledCloseButton onClick={() => setIsBuyMenuOpen(false)}>
         X
       </StyledCloseButton>
-      <div>Buy {currentCoin.name}</div>
+      <div>Buy {currentCoin.id}</div>
       <input
         value={currentCoin.quantity}
         type="number"

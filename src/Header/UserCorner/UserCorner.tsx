@@ -2,8 +2,13 @@ import React from "react";
 import UserCoin from "./UserCoin/UserCoin";
 
 const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
+  console.log(listOfCoins);
   const userCoins = userPortfolio.map((coin) => (
-    <UserCoin key={coin.name} coin={coin} setUserPortfolio={setUserPortfolio} />
+    <UserCoin
+      key={coin.id}
+      coin={listOfCoins.filter((listCoin) => listCoin.id === coin.id)[0]}
+      setUserPortfolio={setUserPortfolio}
+    />
   ));
 
   const previousUserMoney = userPortfolio.reduce(
@@ -15,7 +20,7 @@ const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
     (total, coin) =>
       total +
       +coin.quantity *
-        listOfCoins.find((coinInList) => coinInList.id === coin.name)?.priceUsd,
+        listOfCoins.find((coinInList) => coinInList.id === coin.id)?.priceUsd,
     0
   );
 
