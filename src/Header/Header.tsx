@@ -11,7 +11,13 @@ const StyledCardHolder = styled.div`
   display: flex;
 `;
 
-const Header = (props) => {
+export type HeaderProps = {
+  listOfCoins: APICoin[];
+  userPortfolio: UserCoin[];
+  setUserPortfolio: React.Dispatch<React.SetStateAction<UserCoin[]>>;
+};
+
+const Header = (props: HeaderProps) => {
   const topThreeCoinCards = props.listOfCoins
     .slice(0, 3)
     .map((coin) => (
@@ -20,7 +26,7 @@ const Header = (props) => {
         rank={coin.rank}
         id={coin.id}
         symbol={coin.symbol}
-        price={coin.priceUsd.substring(0, 7)}
+        priceUsd={coin.priceUsd.substring(0, 7)}
       />
     ));
 
