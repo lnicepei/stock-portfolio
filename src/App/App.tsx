@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -7,10 +7,10 @@ import CoinPage from "../Main/CoinList/CoinPage/CoinPage";
 import Main from "../Main/Main";
 
 const App = () => {
-  const [listOfCoins, setListOfCoins] = useState([]);
+  const [listOfCoins, setListOfCoins] = useState<APICoin[]>([]);
   const [limit, setLimit] = useState(30);
   const [fetching, setFetching] = useState(true);
-  const [userPortfolio, setUserPortfolio] = useState(() => [
+  const [userPortfolio, setUserPortfolio] = useState<UserCoin[]>(() => [
     {
       id: "bitcoin",
       quantity: 0.14231,
@@ -27,7 +27,7 @@ const App = () => {
       buyPrice: 278.4492642845494104,
     },
   ]);
-  const [currentCoin, setCurrentCoin] = useState({
+  const [currentCoin, setCurrentCoin] = useState<UserCoin>({
     id: "",
     quantity: 0,
     buyPrice: 0,
@@ -50,10 +50,10 @@ const App = () => {
     }
   }, [fetching]);
 
-  const scrollHandler = (e) => {
+  const scrollHandler = (e: React.UIEvent<DocumentAndElementEventHandlers>) => {
     if (
-      window.innerHeight + e.target.documentElement.scrollTop >
-      e.target.documentElement.scrollHeight - 100
+      window.innerHeight + (e.target as Document).documentElement.scrollTop >
+      (e.target as Document).documentElement.scrollHeight - 100
     ) {
       setFetching(true);
       setLimit((prevLimit) => prevLimit + 10);
@@ -82,12 +82,7 @@ const App = () => {
           />
           <Route
             path=":coinId"
-            element={
-              <CoinPage
-                coinInfo={{ ...currentCoin }}
-                listOfCoins={listOfCoins}
-              />
-            }
+            element={<CoinPage listOfCoins={listOfCoins} />}
           />
         </Routes>
       </BrowserRouter>
