@@ -1,6 +1,11 @@
 import { Card } from "../../../../../App/App.styles";
 
-const AdditionalCoinInfoCard = ({ parameter, info }) => {
+type Props = {
+  parameter: string;
+  info: string;
+}
+
+const AdditionalCoinInfoCard: React.FC<Props> = ({ parameter, info }) => {
   return (
     <Card key={parameter}>
       <p>{parameter}</p>

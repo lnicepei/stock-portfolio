@@ -8,9 +8,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { CoinHistory } from "../CoinPage";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 
-const RenderLineChart = ({ coinHistory }) => {
+type Props = {
+  coinHistory: CoinHistory;
+};
+
+const RenderLineChart: React.FC<Props> = ({ coinHistory }) => {
   return (
     <ResponsiveContainer width="75%" height={400}>
       <AreaChart data={coinHistory.data}>

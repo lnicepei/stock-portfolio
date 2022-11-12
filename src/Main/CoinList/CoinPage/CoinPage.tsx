@@ -13,11 +13,28 @@ const StyledCoinPage = styled.div`
   flex-direction: column;
 `;
 
-const CoinPage = ({ coinInfo, listOfCoins }) => {
+type Props = {
+  listOfCoins: APICoin[];
+};
+
+export interface CoinHistory {
+  data: [
+    {
+      date: string;
+      priceUsd: string;
+    }
+  ];
+}
+
+const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
   const { coinId } = useParams();
   const fullInfo = listOfCoins?.find((coin) => coin.id === coinId);
-  const [coinHistory, setCoinHistory] = useState([]);
-  const [additionalCoinInfo, setAdditionalCoinInfo] = useState([]);
+  const [coinHistory, setCoinHistory] = useState<CoinHistory>(
+    {} as CoinHistory
+  );
+  const [additionalCoinInfo, setAdditionalCoinInfo] = useState<APICoin>(
+    {} as APICoin
+  );
 
   useEffect(() => {
     Axios.get(`https://api.coincap.io/v2/assets/${coinId}`).then((response) => {

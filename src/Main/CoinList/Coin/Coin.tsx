@@ -7,7 +7,17 @@ const StyledCoin = styled(Card)`
   justify-content: space-between;
 `;
 
-const Coin = ({ coin, handleBuyMenuOpen, handleCoinMenuOpen }) => {
+type Props = {
+  coin: APICoin;
+  handleBuyMenuOpen: (e: React.SyntheticEvent) => void;
+  handleCoinMenuOpen: (e: React.SyntheticEvent) => void;
+};
+
+const Coin: React.FC<Props> = ({
+  coin,
+  handleBuyMenuOpen,
+  handleCoinMenuOpen,
+}) => {
   return (
     <StyledCoin onClick={handleCoinMenuOpen}>
       <div>

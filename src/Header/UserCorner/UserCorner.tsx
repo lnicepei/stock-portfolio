@@ -1,6 +1,12 @@
+import React from "react";
+import { HeaderProps } from "../Header";
 import UserCoin from "./UserCoin/UserCoin";
 
-const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
+const UserCorner: React.FC<HeaderProps> = ({
+  listOfCoins,
+  userPortfolio,
+  setUserPortfolio,
+}) => {
   const userCoins = userPortfolio.map((coin) => (
     <UserCoin
       key={coin.id}
@@ -10,15 +16,16 @@ const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
   ));
 
   const previousUserMoney = userPortfolio.reduce(
-    (total, coin) => total + +coin.quantity * coin.buyPrice,
+    (total: number, coin: UserCoin) => total + +coin.quantity * coin.buyPrice,
     0
   );
 
   const currentUserMoney = userPortfolio.reduce(
-    (total, coin) =>
+    (total: number, coin: UserCoin) =>
       total +
       +coin.quantity *
-        listOfCoins.find((coinInList) => coinInList.id === coin.id)?.priceUsd,
+        listOfCoins.find((coinInList: APICoin) => coinInList.id === coin.id)
+          ?.priceUsd,
     0
   );
 

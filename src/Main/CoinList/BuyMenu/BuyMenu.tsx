@@ -26,20 +26,28 @@ const StyledCloseButton = styled.button`
   top: 100px;
 `;
 
-const BuyMenu = ({
+type Props = {
+  innerRef: React.MutableRefObject<HTMLDivElement | null>;
+  buy: () => void;
+  currentCoin: UserCoin;
+  setCurrentCoin: React.Dispatch<React.SetStateAction<UserCoin>>;
+  setIsBuyMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const BuyMenu: React.FC<Props> = ({
   innerRef,
   buy,
   currentCoin,
   setCurrentCoin,
   setIsBuyMenuOpen,
 }) => {
-  const quantityInputRef = useRef(null);
+  const quantityInputRef = useRef<HTMLInputElement | null>(null);
 
-  const setCurrentCoinQuantity = (e) => {
+  const setCurrentCoinQuantity = (e: React.SyntheticEvent) => {
     setCurrentCoin((prevCurrentCoin) => {
       return {
         ...prevCurrentCoin,
-        quantity: e.target.value,
+        quantity: +(e.target as HTMLInputElement).value,
       };
     });
   };

@@ -6,14 +6,18 @@ const StyledAdditionalCoinInfo = styled.div`
   flex-wrap: wrap;
 `;
 
-const AdditionalCoinInfo = ({ additionalCoinInfo }) => {
+type Props = {
+  additionalCoinInfo: APICoin;
+};
+
+const AdditionalCoinInfo: React.FC<Props> = ({ additionalCoinInfo }) => {
   return (
     <StyledAdditionalCoinInfo>
       {Object.keys(additionalCoinInfo).map((key) => (
         <AdditionalCoinInfoCard
           key={key}
           parameter={key}
-          info={additionalCoinInfo[key]}
+          info={additionalCoinInfo[key as keyof APICoin]}
         />
       ))}
     </StyledAdditionalCoinInfo>
