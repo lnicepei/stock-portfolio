@@ -1,12 +1,10 @@
-import React from "react";
 import UserCoin from "./UserCoin/UserCoin";
 
 const UserCorner = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
-  console.log(listOfCoins);
   const userCoins = userPortfolio.map((coin) => (
     <UserCoin
       key={coin.id}
-      coin={listOfCoins.filter((listCoin) => listCoin.id === coin.id)[0]}
+      coin={listOfCoins.find((listCoin) => listCoin.id === coin.id)}
       setUserPortfolio={setUserPortfolio}
     />
   ));
