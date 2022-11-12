@@ -1,10 +1,17 @@
 import React from "react";
 import { Card } from "../../App/App.styles";
 
-const HeaderCoin = ({ rank, id, price, symbol }) => {
+type Props = {
+  rank: string;
+  id: string;
+  priceUsd: string;
+  symbol: string;
+};
+
+const HeaderCoin: React.FC<Props> = ({ rank, id, priceUsd, symbol }) => {
   return (
     <Card>
-      {rank}, {id}, {price}, {symbol}
+      {rank}, {id}, {priceUsd}, {symbol}
     </Card>
   );
 };
