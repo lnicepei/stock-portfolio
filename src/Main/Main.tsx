@@ -71,8 +71,8 @@ const Main: React.FC<Props> = ({
       return prevUserPortfolio.concat({
         id: currentCoin.id,
         quantity: +currentCoin.quantity,
-        buyPrice: +listOfCoins.find((coin) => coin.id === currentCoin.id)
-          .priceUsd,
+        buyPrice: +listOfCoins.filter((coin) => coin.id === currentCoin.id)[0]
+          ?.priceUsd,
       });
     });
   };
