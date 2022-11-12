@@ -1,4 +1,4 @@
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { TooltipProps } from "recharts";
 import {
   NameType,
@@ -15,12 +15,12 @@ const StyledToolTip = styled.div`
   text-align: center;
 `;
 
-const CustomTooltip = ({
+const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
   active,
   payload,
   label,
-}: TooltipProps<ValueType, NameType>) => {
-  if (active && label) {
+}) => {
+  if (active && label && label !== "auto") {
     return (
       <StyledToolTip>
         <h4>{format(new Date(label), "eeee, d MMM, yyyy")}</h4>
