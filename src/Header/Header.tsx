@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Card } from "../App/App.styles";
 import HeaderCoin from "./HeaderCoin/HeaderCoin";
 import UserCorner from "./UserCorner/UserCorner";
 
@@ -18,6 +20,12 @@ export type HeaderProps = {
 };
 
 const Header = (props: HeaderProps) => {
+  const navigate = useNavigate();
+
+  const redirectHome = () => {
+    navigate("/");
+  };
+
   const topThreeCoinCards = props.listOfCoins
     .slice(0, 3)
     .map((coin) => (
@@ -26,12 +34,13 @@ const Header = (props: HeaderProps) => {
         rank={coin.rank}
         id={coin.id}
         symbol={coin.symbol}
-        priceUsd={coin.priceUsd.substring(0, 7)}
+        priceUsd={Number(coin.priceUsd).toFixed(2)}
       />
     ));
 
   return (
     <StyledHeader>
+      <Card onClick={redirectHome}>Stokk</Card>
       <StyledCardHolder>{topThreeCoinCards}</StyledCardHolder>
       <UserCorner {...props} />
     </StyledHeader>
