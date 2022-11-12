@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import CoinPage from "../Main/CoinList/CoinPage/CoinPage";
 import Main from "../Main/Main";
 
-function App() {
+const App = () => {
   const [listOfCoins, setListOfCoins] = useState([]);
   const [limit, setLimit] = useState(30);
   const [fetching, setFetching] = useState(true);
@@ -63,23 +63,21 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header
+          listOfCoins={listOfCoins}
+          userPortfolio={userPortfolio}
+          setUserPortfolio={setUserPortfolio}
+        />
         <Routes>
           <Route
             path="/"
             element={
-              <>
-                <Header
-                  listOfCoins={listOfCoins}
-                  userPortfolio={userPortfolio}
-                  setUserPortfolio={setUserPortfolio}
-                />
-                <Main
-                  currentCoin={currentCoin}
-                  setCurrentCoin={setCurrentCoin}
-                  listOfCoins={listOfCoins}
-                  setUserPortfolio={setUserPortfolio}
-                />
-              </>
+              <Main
+                currentCoin={currentCoin}
+                setCurrentCoin={setCurrentCoin}
+                listOfCoins={listOfCoins}
+                setUserPortfolio={setUserPortfolio}
+              />
             }
           />
           <Route
@@ -95,6 +93,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
