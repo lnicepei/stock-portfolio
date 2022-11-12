@@ -20,7 +20,7 @@ const CustomTooltip = ({
   payload,
   label,
 }: TooltipProps<ValueType, NameType>) => {
-  if (active) {
+  if (active && label) {
     return (
       <StyledToolTip>
         <h4>{format(new Date(label), "eeee, d MMM, yyyy")}</h4>
