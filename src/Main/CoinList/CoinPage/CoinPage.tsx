@@ -29,7 +29,7 @@ const CoinPage = ({ coinInfo, listOfCoins }) => {
     ).then((response) => {
       setCoinHistory(response.data);
     });
-  }, []);
+  }, [coinId]);
 
   return (
     <StyledCoinPage>
