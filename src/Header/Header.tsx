@@ -11,8 +11,8 @@ const StyledCardHolder = styled.div`
   display: flex;
 `;
 
-const Header = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
-  const topThreeCoinCards = listOfCoins
+const Header = (props) => {
+  const topThreeCoinCards = props.listOfCoins
     .slice(0, 3)
     .map((coin) => (
       <HeaderCoin
@@ -27,11 +27,7 @@ const Header = ({ listOfCoins, userPortfolio, setUserPortfolio }) => {
   return (
     <StyledHeader>
       <StyledCardHolder>{topThreeCoinCards}</StyledCardHolder>
-      <UserCorner
-        listOfCoins={listOfCoins}
-        userPortfolio={userPortfolio}
-        setUserPortfolio={setUserPortfolio}
-      />
+      <UserCorner {...props} />
     </StyledHeader>
   );
 };
