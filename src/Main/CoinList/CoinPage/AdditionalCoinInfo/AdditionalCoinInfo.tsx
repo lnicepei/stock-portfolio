@@ -11,6 +11,7 @@ const AdditionalCoinInfo = ({ additionalCoinInfo }) => {
     <StyledAdditionalCoinInfo>
       {Object.keys(additionalCoinInfo).map((key) => (
         <AdditionalCoinInfoCard
+          key={key}
           parameter={key}
           info={additionalCoinInfo[key]}
         />
