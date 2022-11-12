@@ -12,6 +12,7 @@ export const Card = styled.div`
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
   user-select: none;
+  color: #fff;
 
   &:hover {
     box-shadow: 0 10px 16px rgba(0, 0, 0, 0.05);
@@ -19,18 +20,17 @@ export const Card = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: rgba(51, 51, 51, 0.05);
+  background-color: black;
   border-radius: 8px;
   border-width: 0;
-  color: #333333;
+  color: white;
   cursor: pointer;
   display: inline-block;
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   list-style: none;
-  margin: 0;
+  margin: 0 10px;
   padding: 10px 12px;
   text-align: center;
   transition: all 200ms;
