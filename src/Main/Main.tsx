@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BuyContext } from "../App/App";
 import BuyMenu from "./CoinList/BuyMenu/BuyMenu";
 import Coin from "./CoinList/Coin/Coin";
 
@@ -40,41 +41,11 @@ type Props = {
   setUserPortfolio: React.Dispatch<React.SetStateAction<UserCoin[]>>;
 };
 
-const Main: React.FC<Props> = ({
-  currentCoin,
-  setCurrentCoin,
-  listOfCoins,
-  setUserPortfolio,
-}) => {
+const Main: React.FC<Props> = ({ listOfCoins }) => {
   const buyMenuRef = useRef<HTMLDivElement | null>(null);
-  const [isBuyMenuOpen, setIsBuyMenuOpen] = useState(false);
   const navigate = useNavigate();
-
-  const buy = () => {
-    setIsBuyMenuOpen(false);
-    setUserPortfolio((prevUserPortfolio: UserCoin[]) => {
-      if (
-        prevUserPortfolio.some((coin: UserCoin) => coin.id === currentCoin.id)
-      ) {
-        return prevUserPortfolio.map((coin: UserCoin) => {
-          if (coin.id === currentCoin.id) {
-            return {
-              ...coin,
-              quantity: +coin.quantity + +currentCoin.quantity,
-            };
-          }
-          return coin;
-        });
-      }
-
-      return prevUserPortfolio.concat({
-        id: currentCoin.id,
-        quantity: +currentCoin.quantity,
-        buyPrice: +listOfCoins.filter((coin) => coin.id === currentCoin.id)[0]
-          ?.priceUsd,
-      });
-    });
-  };
+  const { setCurrentCoin, isBuyMenuOpen, setIsBuyMenuOpen } =
+    useContext(BuyContext);
 
   const handleBuyMenuOpen = (e: React.SyntheticEvent, coin: APICoin) => {
     e.stopPropagation();
@@ -103,15 +74,7 @@ const Main: React.FC<Props> = ({
 
   return (
     <StyledMain>
-      {isBuyMenuOpen && (
-        <BuyMenu
-          innerRef={buyMenuRef}
-          buy={buy}
-          currentCoin={currentCoin}
-          setCurrentCoin={setCurrentCoin}
-          setIsBuyMenuOpen={setIsBuyMenuOpen}
-        />
-      )}
+      {isBuyMenuOpen && <BuyMenu />}
       {listOfCoins.map((coin) => {
         return (
           <Coin
