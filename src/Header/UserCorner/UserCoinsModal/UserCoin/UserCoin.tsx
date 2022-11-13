@@ -5,22 +5,40 @@ import { Button, Card } from "../../../../App/App.styles";
 
 type Props = {
   coin: APICoin | undefined;
+  userCoin: UserCoin;
   setUserPortfolio: React.Dispatch<React.SetStateAction<UserCoin[]>>;
   toggleModal: (e: React.SyntheticEvent) => void;
 };
 
 const StyledUserCoin = styled(Card)`
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
+  margin: 0.5rem;
+`;
+
+const StyledPrice = styled.p`
+  margin-right: auto;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+const StyledQuantity = styled.p`
+  display: flex;
+  align-items: center;
 `;
 
 const StyledDeleteButton = styled(Button)`
   padding: 5px;
   margin: 5px 0;
-`
+`;
 
-const UserCoin: React.FC<Props> = ({ coin, setUserPortfolio, toggleModal }) => {
+const UserCoin: React.FC<Props> = ({
+  coin,
+  setUserPortfolio,
+  toggleModal,
+  userCoin,
+}) => {
   const navigate = useNavigate();
   const deleteCoin = (e: React.SyntheticEvent) => {
     e.stopPropagation();
@@ -41,8 +59,17 @@ const UserCoin: React.FC<Props> = ({ coin, setUserPortfolio, toggleModal }) => {
   };
 
   return (
-    <StyledUserCoin onClick={openCoinPage}>
-      <p>{coin?.id}</p>
+    <StyledUserCoin>
+      <StyledPrice onClick={openCoinPage}>{coin?.id}</StyledPrice>
+      <StyledQuantity>
+        <svg width={12} viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+          />
+        </svg>{" "}
+        {userCoin.quantity}
+      </StyledQuantity>
       <StyledDeleteButton onClick={deleteCoin}>
         <svg width={24} viewBox="0 0 24 24">
           <path
