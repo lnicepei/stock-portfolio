@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import styled from "styled-components";
+import { BuyContext } from "../../../App/App";
 
 const StyledBuyMenu = styled.div`
   position: relative;
@@ -18,6 +19,7 @@ const StyledBuyMenu = styled.div`
   padding: 100px;
   backdrop-filter: blur(10px);
   background-clip: content-box, padding-box;
+  z-index: 3;
 `;
 
 const StyledCloseButton = styled.button`
@@ -26,21 +28,8 @@ const StyledCloseButton = styled.button`
   top: 100px;
 `;
 
-type Props = {
-  innerRef: React.MutableRefObject<HTMLDivElement | null>;
-  buy: () => void;
-  currentCoin: UserCoin;
-  setCurrentCoin: React.Dispatch<React.SetStateAction<UserCoin>>;
-  setIsBuyMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const BuyMenu: React.FC<Props> = ({
-  innerRef,
-  buy,
-  currentCoin,
-  setCurrentCoin,
-  setIsBuyMenuOpen,
-}) => {
+const BuyMenu = () => {
+  const {setCurrentCoin, currentCoin, buy, setIsBuyMenuOpen} = useContext(BuyContext);
   const quantityInputRef = useRef<HTMLInputElement | null>(null);
 
   const setCurrentCoinQuantity = (e: React.SyntheticEvent) => {
@@ -57,7 +46,7 @@ const BuyMenu: React.FC<Props> = ({
   }, [quantityInputRef]);
 
   return (
-    <StyledBuyMenu ref={innerRef}>
+    <StyledBuyMenu>
       <StyledCloseButton onClick={() => setIsBuyMenuOpen(false)}>
         X
       </StyledCloseButton>
