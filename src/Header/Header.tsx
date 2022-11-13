@@ -1,16 +1,33 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Card } from "../App/App.styles";
-import HeaderCoin from "./HeaderCoin/HeaderCoin";
+import HeaderCoin from "./TopHeaderCoin/TopHeaderCoin";
 import UserCorner from "./UserCorner/UserCorner";
 
 const StyledHeader = styled.header`
+  position: sticky;
   display: flex;
+  height: 10vh;
+  top: 0;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  background-color: #030303;
+  z-index: 2;
 `;
 
-const StyledCardHolder = styled.div`
+const StyledCardHolder = styled.ol`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 10px;
+  height: auto;
+`;
+
+const StyledLogo = styled.h1`
+  cursor: pointer;
+  user-select: none;
 `;
 
 export type HeaderProps = {
@@ -31,8 +48,6 @@ const Header = (props: HeaderProps) => {
     .map((coin) => (
       <HeaderCoin
         key={coin.id}
-        rank={coin.rank}
-        id={coin.id}
         symbol={coin.symbol}
         priceUsd={Number(coin.priceUsd).toFixed(2)}
       />
@@ -40,7 +55,7 @@ const Header = (props: HeaderProps) => {
 
   return (
     <StyledHeader>
-      <Card onClick={redirectHome}>Stokk</Card>
+      <StyledLogo onClick={redirectHome}>Stokk</StyledLogo>
       <StyledCardHolder>{topThreeCoinCards}</StyledCardHolder>
       <UserCorner {...props} />
     </StyledHeader>
