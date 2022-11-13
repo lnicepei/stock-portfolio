@@ -13,6 +13,14 @@ const StyledCoinPage = styled.div`
   flex-direction: column;
 `;
 
+const StyledMain = styled.main`
+  display: flex;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
 type Props = {
   listOfCoins: APICoin[];
 };
@@ -36,9 +44,26 @@ const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
     {} as APICoin
   );
 
+  const toFixed2 = (parameter: string) => {
+    return Number(parameter).toFixed(2);
+  };
+
   useEffect(() => {
     Axios.get(`https://api.coincap.io/v2/assets/${coinId}`).then((response) => {
-      setAdditionalCoinInfo(response.data.data);
+      setAdditionalCoinInfo({
+        rank: response.data.data.rank,
+        symbol: response.data.data.symbol,
+        name: response.data.data.name,
+        priceUsd: toFixed2(response.data.data.priceUsd),
+        changePercent24Hr: toFixed2(response.data.data.changePercent24Hr),
+        explorer: response.data.data.explorer,
+        id: response.data.data.id,
+        marketCapUsd: toFixed2(response.data.data.marketCapUsd),
+        maxSupply: toFixed2(response.data.data.maxSupply),
+        supply: toFixed2(response.data.data.supply),
+        volumeUsd24Hr: toFixed2(response.data.data.volumeUsd24Hr),
+        vwap24Hr: toFixed2(response.data.data.vwap24Hr),
+      });
     });
 
     Axios.get(
@@ -50,9 +75,13 @@ const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
 
   return (
     <StyledCoinPage>
-      <Card>{fullInfo?.id}</Card>
-      <RenderLineChart coinHistory={coinHistory} />
-      <AdditionalCoinInfo additionalCoinInfo={additionalCoinInfo} />
+      <header>
+        <Card>{fullInfo?.id}</Card>
+      </header>
+      <StyledMain>
+        <RenderLineChart coinHistory={coinHistory} />
+        <AdditionalCoinInfo additionalCoinInfo={additionalCoinInfo} />
+      </StyledMain>
     </StyledCoinPage>
   );
 };
