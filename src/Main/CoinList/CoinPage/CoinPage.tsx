@@ -62,7 +62,6 @@ const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
         maxSupply: toFixed2(response.data.data.maxSupply),
         supply: toFixed2(response.data.data.supply),
         volumeUsd24Hr: toFixed2(response.data.data.volumeUsd24Hr),
-        vwap24Hr: toFixed2(response.data.data.vwap24Hr),
       });
     });
 
