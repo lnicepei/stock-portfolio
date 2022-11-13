@@ -7,7 +7,6 @@ import UserStats from "./UserStats/UserStats";
 
 const StyledUserCorner = styled.div`
   display: flex;
-  position: relative;
   align-items: center;
 `;
 
@@ -42,6 +41,7 @@ const UserCorner: React.FC<HeaderProps> = ({
   const userCoins = userPortfolio.map((coin) => (
     <UserCoin
       key={coin.id}
+      userCoin={coin}
       toggleModal={toggleModal}
       coin={listOfCoins.find((listCoin) => listCoin.id === coin.id)}
       setUserPortfolio={setUserPortfolio}
