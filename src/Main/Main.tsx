@@ -24,7 +24,6 @@ declare global {
     supply: string;
     symbol: string;
     volumeUsd24Hr: string;
-    vwap24Hr: string;
   }
 
   interface UserCoin {
