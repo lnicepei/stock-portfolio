@@ -1,8 +1,10 @@
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Card } from "../../../App/App.styles";
+import { BuyContext } from "../../../App/App";
+import { Button, Card } from "../../../App/App.styles";
+import BuyMenu from "../BuyMenu/BuyMenu";
 import AdditionalCoinInfo from "./AdditionalCoinInfo/AdditionalCoinInfo";
 import RenderLineChart from "./RenderLineChart/RenderLineChart";
 
@@ -23,6 +25,7 @@ const StyledMain = styled.main`
 
 type Props = {
   listOfCoins: APICoin[];
+  buy: () => void;
 };
 
 export interface CoinHistory {
@@ -35,6 +38,8 @@ export interface CoinHistory {
 }
 
 const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
+  const { setIsBuyMenuOpen, isBuyMenuOpen, setCurrentCoin } =
+    useContext(BuyContext);
   const { coinId } = useParams();
   const fullInfo = listOfCoins?.find((coin) => coin.id === coinId);
   const [coinHistory, setCoinHistory] = useState<CoinHistory>(
@@ -48,27 +53,40 @@ const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
     return Number(parameter).toFixed(2);
   };
 
-  useEffect(() => {
-    Axios.get(`https://api.coincap.io/v2/assets/${coinId}`).then((response) => {
-      setAdditionalCoinInfo({
-        rank: response.data.data.rank,
-        symbol: response.data.data.symbol,
-        name: response.data.data.name,
-        priceUsd: toFixed2(response.data.data.priceUsd),
-        changePercent24Hr: toFixed2(response.data.data.changePercent24Hr),
-        explorer: response.data.data.explorer,
-        id: response.data.data.id,
-        marketCapUsd: toFixed2(response.data.data.marketCapUsd),
-        maxSupply: toFixed2(response.data.data.maxSupply),
-        supply: toFixed2(response.data.data.supply),
-        volumeUsd24Hr: toFixed2(response.data.data.volumeUsd24Hr),
-      });
-    });
+  const toggleBuyMenuOpen = () => {
+    setIsBuyMenuOpen((prevBuyMenuOpen) => !prevBuyMenuOpen);
+  };
 
-    Axios.get(
-      `https://api.coincap.io/v2/assets/${coinId}/history?interval=d1`
-    ).then((response) => {
-      setCoinHistory(response.data);
+  useEffect(() => {
+    Axios.get(`https://api.coincap.io/v2/assets/${coinId}`)
+      .then((response) => {
+        setAdditionalCoinInfo({
+          rank: response.data.data.rank,
+          symbol: response.data.data.symbol,
+          name: response.data.data.name,
+          priceUsd: toFixed2(response.data.data.priceUsd),
+          changePercent24Hr: toFixed2(response.data.data.changePercent24Hr),
+          explorer: response.data.data.explorer,
+          id: response.data.data.id,
+          marketCapUsd: toFixed2(response.data.data.marketCapUsd),
+          maxSupply: toFixed2(response.data.data.maxSupply),
+          supply: toFixed2(response.data.data.supply),
+          volumeUsd24Hr: toFixed2(response.data.data.volumeUsd24Hr),
+        });
+      })
+      .catch((err) => console.error(err));
+
+    Axios.get(`https://api.coincap.io/v2/assets/${coinId}/history?interval=d1`)
+      .then((response) => {
+        setCoinHistory(response.data);
+      })
+      .catch((err) => console.error(err));
+
+    setCurrentCoin((prevCurrentCoin) => {
+      return {
+        ...prevCurrentCoin,
+        id: coinId ?? "",
+      };
     });
   }, [coinId]);
 
@@ -80,7 +98,9 @@ const CoinPage: React.FC<Props> = ({ listOfCoins }) => {
       <StyledMain>
         <RenderLineChart coinHistory={coinHistory} />
         <AdditionalCoinInfo additionalCoinInfo={additionalCoinInfo} />
+        <Button onClick={toggleBuyMenuOpen}>Buy</Button>
       </StyledMain>
+      {isBuyMenuOpen && <BuyMenu />}
     </StyledCoinPage>
   );
 };
