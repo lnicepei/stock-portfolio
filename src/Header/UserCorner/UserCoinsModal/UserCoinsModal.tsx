@@ -3,9 +3,13 @@ import styled from "styled-components";
 const StyledUserCoinsModal = styled.div`
   position: absolute;
   top: 10vh;
-  right: 50px;
+  right: 0;
+  box-sizing: border-box;
+  max-height: 50vh;
+  width: max(20vw, 200px);
+  overflow-y: scroll;
+  background-color: black;
   z-index: 2;
-  color: black;
 `;
 
 type Props = {
