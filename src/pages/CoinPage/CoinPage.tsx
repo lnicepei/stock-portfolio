@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BounceLoader } from "react-spinners";
 import styled from "styled-components";
@@ -59,7 +59,6 @@ const TopRightSection = styled.section`
 
 type Props = {
   listOfCoins: APICoin[];
-  buy: () => void;
 };
 
 export interface CoinHistory {
