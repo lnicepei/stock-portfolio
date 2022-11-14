@@ -17,13 +17,12 @@ type Props = {
 };
 
 const StyledRenderLineChart = styled(ResponsiveContainer)`
-  width: 100%;
   flex: 4 1;
 `;
 
 const RenderLineChart: React.FC<Props> = ({ coinHistory }) => {
   return (
-    <StyledRenderLineChart height={400}>
+    <StyledRenderLineChart width="90%" height={400}>
       <AreaChart data={coinHistory.data}>
         <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">

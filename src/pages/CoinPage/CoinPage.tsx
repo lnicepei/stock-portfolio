@@ -47,6 +47,10 @@ const StyledBounceLoader = styled(BounceLoader)`
 
 const TopSection = styled.section`
   display: flex;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const TopRightSection = styled.section`
