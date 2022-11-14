@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const Card = styled.div`
   display: flex;
@@ -37,4 +37,19 @@ export const Button = styled.button`
   vertical-align: baseline;
   white-space: nowrap;
   user-select: none;
+`;
+
+export const StyledApp = styled.div`
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #2c3744;
+  }
 `;
