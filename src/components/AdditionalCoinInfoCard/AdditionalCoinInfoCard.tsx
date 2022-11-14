@@ -29,7 +29,7 @@ const AdditionalCoinInfoCard: React.FC<Props> = ({ parameter, info }) => {
     <StyledFieldset key={parameter}>
       <legend>{parameter}</legend>
       {parameter === "explorer" ? (
-        <a href={info} target="_blank">
+        <a href={info} target="_blank" rel="noreferrer">
           {info}
         </a>
       ) : (
