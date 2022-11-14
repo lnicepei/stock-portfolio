@@ -1,10 +1,10 @@
 import Axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "../Header/Header";
-import CoinPage from "../Main/CoinList/CoinPage/CoinPage";
-import Main from "../Main/Main";
-import "./App.css";
+import Header from "../components/Header/Header";
+import CoinPage from "../pages/CoinPage/CoinPage";
+import Main from "../pages/MainPage/MainPage";
+import { StyledApp } from "./App.styles";
 
 interface BuyContext {
   currentCoin: UserCoin;
@@ -103,7 +103,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <StyledApp>
       <BrowserRouter>
         <Header
           listOfCoins={listOfCoins}
@@ -138,7 +138,7 @@ const App = () => {
           </Routes>
         </BuyContext.Provider>
       </BrowserRouter>
-    </div>
+    </StyledApp>
   );
 };
 
