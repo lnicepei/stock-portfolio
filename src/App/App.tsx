@@ -24,17 +24,17 @@ const App = () => {
     {
       id: "bitcoin",
       quantity: 0.14231,
-      buyPrice: 16705.1939777214815769,
+      buyPrice: 16705.19397,
     },
     {
       id: "tether",
       quantity: 0.1234231,
-      buyPrice: 0.9995246329709383,
+      buyPrice: 0.9995,
     },
     {
       id: "binance-coin",
       quantity: 0.1234231,
-      buyPrice: 278.4492642845494104,
+      buyPrice: 278.44926,
     },
   ]);
   const [currentCoin, setCurrentCoin] = useState<UserCoin>({
@@ -133,7 +133,7 @@ const App = () => {
             />
             <Route
               path=":coinId"
-              element={<CoinPage listOfCoins={listOfCoins} buy={buy} />}
+              element={<CoinPage listOfCoins={listOfCoins} />}
             />
           </Routes>
         </BuyContext.Provider>
