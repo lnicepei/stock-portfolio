@@ -45,7 +45,7 @@ const UserCoin: React.FC<Props> = ({
     //TODO: Delete from localstorage too
     setUserPortfolio((prevUserPortfolio) =>
       prevUserPortfolio.filter((coinInPortfolio: UserCoin) => {
-        if (coinInPortfolio.id !== coin!.id) {
+        if (coinInPortfolio.id !== coin?.id) {
           return coinInPortfolio;
         }
         return;
@@ -55,7 +55,7 @@ const UserCoin: React.FC<Props> = ({
 
   const openCoinPage = (e: React.SyntheticEvent) => {
     toggleModal(e);
-    navigate(coin!.id);
+    navigate(coin?.id ?? "/");
   };
 
   return (
