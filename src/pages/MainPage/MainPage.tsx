@@ -1,9 +1,9 @@
 import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { BuyContext } from "../App/App";
-import BuyMenu from "./CoinList/BuyMenu/BuyMenu";
-import Coin from "./CoinList/Coin/Coin";
+import { BuyContext } from "../../App/App";
+import BuyMenu from "../../components/BuyMenu/BuyMenu";
+import Coin from "../../components/Coin/Coin";
 
 const StyledMain = styled.main`
   display: flex;
@@ -11,28 +11,6 @@ const StyledMain = styled.main`
   margin: 0;
   padding: 0;
 `;
-
-declare global {
-  interface APICoin {
-    changePercent24Hr: string;
-    explorer: string;
-    id: string;
-    marketCapUsd: string;
-    maxSupply: string;
-    name: string;
-    priceUsd: string;
-    rank: string;
-    supply: string;
-    symbol: string;
-    volumeUsd24Hr: string;
-  }
-
-  interface UserCoin {
-    id: string;
-    quantity: number;
-    buyPrice: number;
-  }
-}
 
 type Props = {
   currentCoin: UserCoin;

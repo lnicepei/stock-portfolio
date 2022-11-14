@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { BuyContext } from "../../../App/App";
+import { BuyContext } from "../../App/App";
 
 const StyledBuyMenu = styled.div`
   position: relative;
@@ -29,7 +29,8 @@ const StyledCloseButton = styled.button`
 `;
 
 const BuyMenu = () => {
-  const {setCurrentCoin, currentCoin, buy, setIsBuyMenuOpen} = useContext(BuyContext);
+  const { setCurrentCoin, currentCoin, buy, setIsBuyMenuOpen } =
+    useContext(BuyContext);
   const quantityInputRef = useRef<HTMLInputElement | null>(null);
 
   const setCurrentCoinQuantity = (e: React.SyntheticEvent) => {

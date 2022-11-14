@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { HeaderProps } from "../Header";
-import ModalToggle from "./ModalToggle/ModalToggle";
-import UserCoin from "./UserCoinsModal/UserCoin/UserCoin";
-import UserStats from "./UserStats/UserStats";
+import { HeaderProps } from "../Header/Header";
+import ModalToggle from "../ModalToggle/ModalToggle";
+import UserCoin from "../UserCoin/UserCoin";
+import UserStats from "../UserStats/UserStats";
 
 const StyledUserCorner = styled.div`
   display: flex;

@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import AdditionalCoinInfoCard from "./AdditionalCoinInfoCard/AdditionalCoinInfoCard";
+import AdditionalCoinInfoCard from "../AdditionalCoinInfoCard/AdditionalCoinInfoCard";
 
 const StyledAdditionalCoinInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
+  flex: 1 1;
 `;
 
 type Props = {

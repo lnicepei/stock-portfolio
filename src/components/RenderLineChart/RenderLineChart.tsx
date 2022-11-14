@@ -8,16 +8,22 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { CoinHistory } from "../CoinPage";
+import styled from "styled-components";
+import { CoinHistory } from "../../pages/CoinPage/CoinPage";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 
 type Props = {
   coinHistory: CoinHistory;
 };
 
+const StyledRenderLineChart = styled(ResponsiveContainer)`
+  width: 100%;
+  flex: 4 1;
+`;
+
 const RenderLineChart: React.FC<Props> = ({ coinHistory }) => {
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <StyledRenderLineChart height={400}>
       <AreaChart data={coinHistory.data}>
         <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -49,7 +55,7 @@ const RenderLineChart: React.FC<Props> = ({ coinHistory }) => {
 
         <CartesianGrid opacity={0.1} vertical={false} />
       </AreaChart>
-    </ResponsiveContainer>
+    </StyledRenderLineChart>
   );
 };
 

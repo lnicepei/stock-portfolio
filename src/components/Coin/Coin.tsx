@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Card } from "../../../App/App.styles";
+import { Button, Card } from "../../App/App.styles";
 
 const StyledCoin = styled(Card)`
   padding: 20px;
