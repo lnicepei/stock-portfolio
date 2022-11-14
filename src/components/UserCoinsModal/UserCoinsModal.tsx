@@ -9,6 +9,7 @@ const StyledUserCoinsModal = styled.div`
   width: max(20vw, 200px);
   overflow-y: scroll;
   background-color: black;
+  border-radius: 0 0 1rem 1rem;
   z-index: 2;
 `;
 
