@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AdditionalCoinInfoCard from "../AdditionalCoinInfoCard/AdditionalCoinInfoCard";
+import AdditionalCoinInfoCard from "./components/AdditionalCoinInfoCard/AdditionalCoinInfoCard";
 
 const StyledAdditionalCoinInfo = styled.div`
   display: flex;
