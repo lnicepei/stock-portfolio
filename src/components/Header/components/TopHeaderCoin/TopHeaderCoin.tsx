@@ -8,7 +8,7 @@ type Props = {
 const HeaderCoin: React.FC<Props> = ({ priceUsd, symbol }) => {
   return (
     <li>
-      {symbol} {priceUsd}
+      {symbol} {window.innerWidth > 600 && priceUsd}
     </li>
   );
 };
