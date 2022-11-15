@@ -1,6 +1,6 @@
-import Axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { fetchListOfCoins } from "../api";
 import Header from "../components/Header/Header";
 import CoinPage from "../pages/CoinPage/CoinPage";
 import Main from "../pages/MainPage/MainPage";
@@ -78,12 +78,7 @@ const App = () => {
 
   useEffect(() => {
     if (fetching) {
-      Axios.get(`https://api.coincap.io/v2/assets?limit=${limit}`)
-        .then((response) => {
-          setListOfCoins(response.data.data);
-          setFetching(false);
-        })
-        .finally(() => setFetching(false));
+      fetchListOfCoins(limit, setListOfCoins, setFetching);
     }
   }, [fetching]);
 
@@ -95,7 +90,7 @@ const App = () => {
     );
     if (
       window.innerHeight + document.documentElement.scrollTop >
-      document.documentElement.scrollHeight - 100
+      document.documentElement.scrollHeight - 150
     ) {
       setFetching(true);
       setLimit((prevLimit) => prevLimit + 10);
