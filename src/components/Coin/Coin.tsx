@@ -1,4 +1,4 @@
-import { Button } from "../../App/App.styles";
+import { Button } from "../../App/style";
 import { StyledCoin, StyledLink } from "./style";
 
 type Props = {

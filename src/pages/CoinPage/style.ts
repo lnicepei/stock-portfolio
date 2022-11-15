@@ -1,6 +1,6 @@
 import { BounceLoader } from "react-spinners";
 import styled from "styled-components";
-import { Button } from "../../App/App.styles";
+import { Button } from "../../App/style";
 
 export const StyledCoinPage = styled.div`
   display: flex;

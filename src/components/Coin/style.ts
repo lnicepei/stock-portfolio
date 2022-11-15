@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "../../App/App.styles";
+import { Card } from "../../App/style";
 
 export const StyledCoin = styled(Card)`
   padding: 20px;

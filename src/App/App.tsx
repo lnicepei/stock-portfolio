@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "../components/Header/Header";
 import CoinPage from "../pages/CoinPage/CoinPage";
 import Main from "../pages/MainPage/MainPage";
-import { StyledApp } from "./App.styles";
+import { StyledApp } from "./style";
 
 interface BuyContext {
   currentCoin: UserCoin;

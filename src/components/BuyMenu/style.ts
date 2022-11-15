@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../App/App.styles";
+import { Button } from "../../App/style";
 
 export const StyledBuyMenu = styled.div`
   display: flex;
