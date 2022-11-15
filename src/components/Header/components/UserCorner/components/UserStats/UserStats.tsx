@@ -1,9 +1,5 @@
 import styled from "styled-components";
-
-const StyledUserStats = styled.ul`
-  text-align: center;
-  list-style: none;
-`;
+import { StyledUserStats } from "./style";
 
 type Props = {
   currentMoney: number;

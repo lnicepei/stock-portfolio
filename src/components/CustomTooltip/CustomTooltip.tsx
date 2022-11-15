@@ -4,16 +4,7 @@ import {
   NameType,
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
-import styled from "styled-components";
-
-const StyledToolTip = styled.div`
-  border-radius: 0.25rem;
-  background: #26313c;
-  color: #fff;
-  padding: 1rem;
-  box-shadow: 15px 30px 40px 5px rgba(0, 0, 0, 0.5);
-  text-align: center;
-`;
+import { StyledToolTip } from "./style";
 
 const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
   active,

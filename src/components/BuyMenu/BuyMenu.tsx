@@ -1,36 +1,11 @@
-import React, { useRef, useEffect, useContext } from "react";
-import styled from "styled-components";
+import React, { useContext, useEffect, useRef } from "react";
 import { BuyContext } from "../../App/App";
-
-const StyledBuyMenu = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100vh;
-  width: 100vw;
-  border-radius: 20px;
-  background-color: #5eb2f739;
-  box-sizing: border-box;
-  padding: 100px;
-  backdrop-filter: blur(10px);
-  background-clip: content-box, padding-box;
-  z-index: 3;
-`;
-
-const StyledCloseButton = styled.button`
-  position: absolute;
-  right: 100px;
-  top: 100px;
-`;
+import { StyledBuyMenu, StyledCloseButton, StyledBuyText } from "./style";
 
 const BuyMenu = () => {
   const { setCurrentCoin, currentCoin, buy, setIsBuyMenuOpen } =
     useContext(BuyContext);
+
   const quantityInputRef = useRef<HTMLInputElement | null>(null);
 
   const setCurrentCoinQuantity = (e: React.SyntheticEvent) => {
@@ -49,9 +24,9 @@ const BuyMenu = () => {
   return (
     <StyledBuyMenu>
       <StyledCloseButton onClick={() => setIsBuyMenuOpen(false)}>
-        X
+        ✖
       </StyledCloseButton>
-      <div>Buy {currentCoin.id}</div>
+      <StyledBuyText>Buy {currentCoin.id}</StyledBuyText>
       <input
         value={currentCoin.quantity}
         type="number"

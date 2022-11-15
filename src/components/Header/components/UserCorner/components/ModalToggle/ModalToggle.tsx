@@ -1,12 +1,5 @@
-import styled from "styled-components";
-import UserCoinsModal from "../UserCorner/components/UserCoinsModal/UserCoinsModal";
-
-const StyledModalToggle = styled.div`
-  align-items: flex-start;
-  z-index: 2;
-  height: auto;
-  cursor: pointer;
-`;
+import UserCoinsModal from "../UserCoinsModal/UserCoinsModal";
+import { StyledModalToggle } from "./style";
 
 type Props = {
   toggleModal: (e: React.SyntheticEvent) => void;

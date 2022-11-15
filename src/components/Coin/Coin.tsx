@@ -1,17 +1,5 @@
-import styled from "styled-components";
-import { Button, Card } from "../../App/App.styles";
-
-const StyledCoin = styled(Card)`
-  padding: 20px;
-  margin: 5px;
-  justify-content: space-between;
-`;
-
-const StyledLink = styled.a`
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-`;
+import { Button } from "../../App/App.styles";
+import { StyledCoin, StyledLink } from "./style";
 
 type Props = {
   coin: APICoin;

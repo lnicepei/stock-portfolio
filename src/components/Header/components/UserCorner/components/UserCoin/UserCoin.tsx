@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { Button, Card } from "../../../../../../App/App.styles";
+import {
+  StyledDeleteButton,
+  StyledPrice,
+  StyledQuantity,
+  StyledUserCoin,
+} from "./style";
 
 type Props = {
   coin: APICoin | undefined;
@@ -9,29 +13,6 @@ type Props = {
   setUserPortfolio: React.Dispatch<React.SetStateAction<UserCoin[]>>;
   toggleModal: (e: React.SyntheticEvent) => void;
 };
-
-const StyledUserCoin = styled(Card)`
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem;
-`;
-
-const StyledPrice = styled.p`
-  margin-right: auto;
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-`;
-
-const StyledQuantity = styled.p`
-  display: flex;
-  align-items: center;
-`;
-
-const StyledDeleteButton = styled(Button)`
-  padding: 5px;
-  margin: 5px 0;
-`;
 
 const UserCoin: React.FC<Props> = ({
   coin,

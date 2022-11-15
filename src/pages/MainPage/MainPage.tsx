@@ -1,16 +1,9 @@
 import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { BuyContext } from "../../App/App";
 import BuyMenu from "../../components/BuyMenu/BuyMenu";
 import Coin from "../../components/Coin/Coin";
-
-const StyledMain = styled.main`
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-`;
+import { StyledMain } from "./style";
 
 type Props = {
   currentCoin: UserCoin;

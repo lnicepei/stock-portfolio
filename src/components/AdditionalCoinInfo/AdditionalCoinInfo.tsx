@@ -1,11 +1,5 @@
-import styled from "styled-components";
 import AdditionalCoinInfoCard from "./components/AdditionalCoinInfoCard/AdditionalCoinInfoCard";
-
-const StyledAdditionalCoinInfo = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1;
-`;
+import { StyledAdditionalCoinInfo } from "./style";
 
 type Props = {
   additionalCoinInfo: APICoin;

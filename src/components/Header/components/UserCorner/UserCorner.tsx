@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { HeaderProps } from "../../Header";
-import ModalToggle from "../ModalToggle/ModalToggle";
+import ModalToggle from "./components/ModalToggle/ModalToggle";
 import UserCoin from "./components/UserCoin/UserCoin";
 import UserStats from "./components/UserStats/UserStats";
-
-const StyledUserCorner = styled.div`
-  display: flex;
-  align-items: center;
-`;
+import { StyledUserCorner } from "./style";
 
 const UserCorner: React.FC<HeaderProps> = ({
   listOfCoins,

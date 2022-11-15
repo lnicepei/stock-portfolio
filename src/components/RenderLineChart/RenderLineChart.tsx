@@ -3,22 +3,17 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import styled from "styled-components";
 import { CoinHistory } from "../../pages/CoinPage/CoinPage";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
+import { StyledRenderLineChart } from "./style";
 
 type Props = {
   coinHistory: CoinHistory;
 };
-
-const StyledRenderLineChart = styled(ResponsiveContainer)`
-  flex: 4 1;
-`;
 
 const RenderLineChart: React.FC<Props> = ({ coinHistory }) => {
   return (
