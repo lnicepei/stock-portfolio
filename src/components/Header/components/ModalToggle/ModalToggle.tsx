@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import UserCoinsModal from "../UserCoinsModal/UserCoinsModal";
+import UserCoinsModal from "../UserCorner/components/UserCoinsModal/UserCoinsModal";
 
 const StyledModalToggle = styled.div`
   align-items: flex-start;

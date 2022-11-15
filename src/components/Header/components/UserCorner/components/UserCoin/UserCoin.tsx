@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Card } from "../../App/App.styles";
+import { Button, Card } from "../../../../../../App/App.styles";
 
 type Props = {
   coin: APICoin | undefined;
