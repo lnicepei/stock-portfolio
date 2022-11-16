@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { fetchListOfCoins } from "../api";
 import Header from "../components/Header/Header";
 import CoinPage from "../pages/CoinPage/CoinPage";
 import Main from "../pages/MainPage/MainPage";
@@ -16,6 +17,8 @@ interface BuyContext {
 export const BuyContext = createContext<BuyContext>({} as BuyContext);
 
 const App = () => {
+  const [limit, setLimit] = useState(30);
+  const [fetching, setFetching] = useState(true);
   const [isBuyMenuOpen, setIsBuyMenuOpen] = useState(false);
   const [currentCoin, setCurrentCoin] = useState<UserCoin>({
     id: "",
@@ -44,6 +47,29 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("portfolio", JSON.stringify(userPortfolio));
   }, [userPortfolio]);
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+
+    return () => document.removeEventListener("scroll", scrollHandler);
+  }, []);
+
+  useEffect(() => {
+    if (fetching) {
+      fetchListOfCoins(limit, setListOfCoins, setFetching);
+    }
+  }, [fetching]);
+
+  const scrollHandler = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >
+        document.documentElement.scrollHeight - 300 &&
+      document.URL.at(-1) === "/"
+    ) {
+      setFetching(true);
+      setLimit((prevLimit) => prevLimit + 10);
+    }
+  };
 
   return (
     <StyledApp>
