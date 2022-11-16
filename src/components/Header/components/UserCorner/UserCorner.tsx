@@ -17,7 +17,7 @@ const UserCorner: React.FC<HeaderProps> = ({
     setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
   };
 
-  const previousUserMoney = userPortfolio.reduce(
+  const userBuyMoney = userPortfolio.reduce(
     (total: number, coin: UserCoin) => total + +coin.quantity * coin.buyPrice,
     0
   );
@@ -33,9 +33,9 @@ const UserCorner: React.FC<HeaderProps> = ({
       0
     ) || 0;
 
-  const userCoins = userPortfolio.map((coin) => (
+  const userCoins = userPortfolio.map((coin, index) => (
     <UserCoin
-      key={coin.id}
+      key={index}
       userCoin={coin}
       toggleModal={toggleModal}
       coin={listOfCoins.find((listCoin) => listCoin.id === coin.id)}
@@ -47,9 +47,9 @@ const UserCorner: React.FC<HeaderProps> = ({
     <StyledUserCorner>
       <UserStats
         currentMoney={currentUserMoney}
-        difference={(currentUserMoney - previousUserMoney).toFixed(2)}
+        difference={(currentUserMoney - userBuyMoney).toFixed(2)}
         percents={Math.abs(
-          (currentUserMoney / previousUserMoney || 1) * 100 - 100
+          (currentUserMoney / userBuyMoney || 1) * 100 - 100
         ).toFixed(2)}
       />
       <ModalToggle
