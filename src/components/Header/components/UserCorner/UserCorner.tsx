@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeaderProps } from "../../Header";
 import ModalToggle from "../ModalToggle/ModalToggle";
 import UserCoin from "../UserCoin/UserCoin";
@@ -42,6 +42,12 @@ const UserCorner: React.FC<HeaderProps> = ({
       setUserPortfolio={setUserPortfolio}
     />
   ));
+
+  useEffect(() => {
+    if (userPortfolio.length === 0) {
+      setIsModalOpen(false);
+    }
+  }, [userPortfolio]);
 
   return (
     <StyledUserCorner>
