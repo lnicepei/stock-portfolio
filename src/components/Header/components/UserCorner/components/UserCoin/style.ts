@@ -9,7 +9,6 @@ export const StyledUserCoin = styled(Card)`
 
 export const StyledPrice = styled.p`
   margin-right: auto;
-  color: white;
   text-decoration: underline;
   cursor: pointer;
 `;
