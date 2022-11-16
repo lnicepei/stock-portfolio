@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import { StyledUserStats } from "./style";
+import { StyledDifference, StyledPercents, StyledUserStats } from "./style";
 
 type Props = {
   currentMoney: number;
@@ -8,18 +7,14 @@ type Props = {
 };
 
 const UserStats: React.FC<Props> = ({ currentMoney, difference, percents }) => {
-  const StyledP = styled.li`
-    color: ${+difference < 0 ? "red" : "green"};
-  `;
-
   return (
     <StyledUserStats>
       <li>{Number(currentMoney).toFixed(2)}$</li>
-      <StyledP>
+      <StyledDifference difference={difference}>
         {+difference > 0 && "+"}
         {difference}$
-      </StyledP>
-      <StyledP>{percents}%</StyledP>
+      </StyledDifference>
+      <StyledPercents percents={percents}>{percents}%</StyledPercents>
     </StyledUserStats>
   );
 };
