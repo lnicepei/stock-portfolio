@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Card } from "../../../../../../App/style";
+import { Button, Card } from "../../../../App/style";
 
 export const StyledUserCoin = styled(Card)`
   display: flex;
