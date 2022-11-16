@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { HeaderProps } from "../../Header";
-import ModalToggle from "./components/ModalToggle/ModalToggle";
-import UserCoin from "./components/UserCoin/UserCoin";
-import UserStats from "./components/UserStats/UserStats";
+import ModalToggle from "../ModalToggle/ModalToggle";
+import UserCoin from "../UserCoin/UserCoin";
+import UserStats from "../UserStats/UserStats";
 import { StyledUserCorner } from "./style";
 
 const UserCorner: React.FC<HeaderProps> = ({
