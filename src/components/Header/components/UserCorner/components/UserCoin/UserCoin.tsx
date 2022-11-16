@@ -23,7 +23,7 @@ const UserCoin: React.FC<Props> = ({
   const navigate = useNavigate();
   const deleteCoin = (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    //TODO: Delete from localstorage too
+
     setUserPortfolio((prevUserPortfolio) =>
       prevUserPortfolio.filter((coinInPortfolio: UserCoin) => {
         if (coinInPortfolio.id !== coin?.id) {
@@ -41,7 +41,8 @@ const UserCoin: React.FC<Props> = ({
 
   return (
     <StyledUserCoin>
-      <StyledPrice onClick={openCoinPage}>{coin?.id}</StyledPrice>
+      <StyledPrice onClick={openCoinPage}>{coin?.symbol}</StyledPrice>
+      <p>{Number(userCoin.buyPrice).toFixed(3)}$</p>
       <StyledQuantity>
         <svg width={12} viewBox="0 0 24 24">
           <path
