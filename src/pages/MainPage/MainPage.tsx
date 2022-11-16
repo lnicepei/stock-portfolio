@@ -1,20 +1,21 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchListOfCoins } from "../../api";
 import { BuyContext } from "../../App/App";
 import BuyMenu from "../../components/BuyMenu/BuyMenu";
 import Coin from "../../components/Coin/Coin";
 import { StyledMain } from "./style";
 
 type Props = {
-  currentCoin: UserCoin;
-  setCurrentCoin: React.Dispatch<React.SetStateAction<UserCoin>>;
   listOfCoins: APICoin[];
-  setUserPortfolio: React.Dispatch<React.SetStateAction<UserCoin[]>>;
+  setListOfCoins: React.Dispatch<React.SetStateAction<APICoin[]>>;
 };
 
-const Main: React.FC<Props> = ({ listOfCoins }) => {
-  const buyMenuRef = useRef<HTMLDivElement | null>(null);
+const Main: React.FC<Props> = ({ listOfCoins, setListOfCoins }) => {
   const navigate = useNavigate();
+  const [limit, setLimit] = useState(30);
+  const [fetching, setFetching] = useState(true);
+  const buyMenuRef = useRef<HTMLDivElement | null>(null);
   const { setCurrentCoin, isBuyMenuOpen, setIsBuyMenuOpen } =
     useContext(BuyContext);
 
@@ -40,6 +41,28 @@ const Main: React.FC<Props> = ({ listOfCoins }) => {
       setIsBuyMenuOpen(false);
     } else {
       navigate(coin.id);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+
+    return () => document.removeEventListener("scroll", scrollHandler);
+  }, []);
+
+  useEffect(() => {
+    if (fetching) {
+      fetchListOfCoins(limit, setListOfCoins, setFetching);
+    }
+  }, [fetching]);
+
+  const scrollHandler = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >
+      document.documentElement.scrollHeight - 300
+    ) {
+      setFetching(true);
+      setLimit((prevLimit) => prevLimit + 10);
     }
   };
 
