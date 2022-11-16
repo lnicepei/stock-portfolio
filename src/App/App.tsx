@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "../components/Header/Header";
 import CoinPage from "../pages/CoinPage/CoinPage";
@@ -16,7 +16,6 @@ interface BuyContext {
 export const BuyContext = createContext<BuyContext>({} as BuyContext);
 
 const App = () => {
-  const mainRef = useRef(null);
   const [isBuyMenuOpen, setIsBuyMenuOpen] = useState(false);
   const [currentCoin, setCurrentCoin] = useState<UserCoin>({
     id: "",
@@ -68,7 +67,6 @@ const App = () => {
               path="/"
               element={
                 <Main
-                  innerRef={mainRef}
                   listOfCoins={listOfCoins}
                   setListOfCoins={setListOfCoins}
                 />
