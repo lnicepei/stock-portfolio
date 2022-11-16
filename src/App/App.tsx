@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { fetchListOfCoins } from "../api";
 import Header from "../components/Header/Header";
 import CoinPage from "../pages/CoinPage/CoinPage";
@@ -73,7 +73,7 @@ const App = () => {
 
   return (
     <StyledApp>
-      <BrowserRouter>
+      <HashRouter>
         <Header
           listOfCoins={listOfCoins}
           userPortfolio={userPortfolio}
@@ -104,7 +104,7 @@ const App = () => {
             />
           </Routes>
         </BuyContext.Provider>
-      </BrowserRouter>
+      </HashRouter>
     </StyledApp>
   );
 };
