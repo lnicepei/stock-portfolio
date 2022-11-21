@@ -11,7 +11,7 @@ export const BlurBackground = styled.div`
   border-radius: 20px;
 `;
 
-export const StyledBuyMenu = styled.div`
+export const StyledBuyMenu = styled.form`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -52,5 +52,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledBuyButton = styled(Button)`
+  opacity: ${(props) => (props.disabled ? 0.4 : 1)};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   margin: 0;
 `;
