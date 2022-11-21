@@ -1,6 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
+
 import { BuyContext } from "../../App/App";
-import { StyledBuyMenu, StyledCloseButton, StyledBuyText, BlurBackground, StyledInput, StyledBuyButton } from "./style";
+import {
+  BlurBackground,
+  StyledBuyButton,
+  StyledBuyMenu,
+  StyledBuyText,
+  StyledCloseButton,
+  StyledInput,
+} from "./style";
 
 const BuyMenu = () => {
   const { setCurrentCoin, currentCoin, buy, setIsBuyMenuOpen } =
@@ -22,19 +30,21 @@ const BuyMenu = () => {
   }, [quantityInputRef]);
 
   return (
-    <StyledBuyMenu>
+    <StyledBuyMenu onSubmit={buy}>
       <BlurBackground>
         <StyledCloseButton onClick={() => setIsBuyMenuOpen(false)}>
           ✖
         </StyledCloseButton>
         <StyledBuyText>Buy {currentCoin.id}</StyledBuyText>
         <StyledInput
-          value={currentCoin.quantity}
+          value={currentCoin.quantity || ""}
           type="number"
-          onChange={(e) => setCurrentCoinQuantity(e)}
+          onChange={setCurrentCoinQuantity}
           ref={quantityInputRef}
         />
-        <StyledBuyButton onClick={buy}>Buy</StyledBuyButton>
+        <StyledBuyButton disabled={currentCoin.quantity <= 0}>
+          Buy
+        </StyledBuyButton>
       </BlurBackground>
     </StyledBuyMenu>
   );
