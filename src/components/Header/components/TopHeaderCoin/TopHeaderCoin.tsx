@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledLI } from "./style";
 
 type Props = {
   priceUsd: string;
@@ -7,9 +8,9 @@ type Props = {
 
 const HeaderCoin: React.FC<Props> = ({ priceUsd, symbol }) => {
   return (
-    <li>
-      {symbol} {window.innerWidth > 600 && priceUsd}
-    </li>
+    <StyledLI>
+      <span>{symbol}</span> <span>{priceUsd}$</span>
+    </StyledLI>
   );
 };
 
