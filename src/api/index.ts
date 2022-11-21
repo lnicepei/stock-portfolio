@@ -1,16 +1,17 @@
-import { CoinHistory } from "./../pages/CoinPage/CoinPage";
-import Axios, { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import React from "react";
+import { CoinHistory } from "./../pages/CoinPage/CoinPage";
 
-const toFixed2 = (parameter: string) => {
-  return Number(parameter).toFixed(2);
-};
+const api = axios.create({
+  baseURL: "https://api.coincap.io/v2/assets",
+});
 
 export const fetchAdditionalCoinInfo = (
   setAdditionalCoinInfo: React.Dispatch<React.SetStateAction<APICoin>>,
   coinId: string | undefined
 ) => {
-  Axios.get(`https://api.coincap.io/v2/assets/${coinId}`)
+  api
+    .get(`/${coinId}`)
     .then((response) => {
       setAdditionalCoinInfo({
         rank: response.data.data.rank,
@@ -33,7 +34,8 @@ export const fetchCoinHistory = (
   setCoinHistory: React.Dispatch<React.SetStateAction<CoinHistory>>,
   coinId: string | undefined
 ) => {
-  Axios.get(`https://api.coincap.io/v2/assets/${coinId}/history?interval=d1`)
+  api
+    .get(`/${coinId}/history?interval=d1`)
     .then((response) => {
       setCoinHistory(response.data);
     })
@@ -45,10 +47,15 @@ export const fetchListOfCoins = (
   setListOfCoins: React.Dispatch<React.SetStateAction<APICoin[]>>,
   setFetching: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  Axios.get(`https://api.coincap.io/v2/assets?limit=${limit}`)
+  api
+    .get(`?limit=${limit}`)
     .then((response) => {
       setListOfCoins(response.data.data);
       setFetching(false);
     })
     .finally(() => setFetching(false));
+};
+
+const toFixed2 = (parameter: string) => {
+  return Number(parameter).toFixed(2);
 };
