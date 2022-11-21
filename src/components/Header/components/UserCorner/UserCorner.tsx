@@ -36,6 +36,7 @@ const UserCorner: React.FC<HeaderProps> = ({
   const userCoins = userPortfolio.map((coin, index) => (
     <UserCoin
       key={index}
+      propIndex={index}
       userCoin={coin}
       toggleModal={toggleModal}
       coin={listOfCoins.find((listCoin) => listCoin.id === coin.id)}

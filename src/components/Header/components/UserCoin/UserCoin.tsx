@@ -8,6 +8,7 @@ import {
 } from "./style";
 
 type Props = {
+  propIndex: number;
   coin: APICoin | undefined;
   userCoin: UserCoin;
   setUserPortfolio: React.Dispatch<React.SetStateAction<UserCoin[]>>;
@@ -19,17 +20,19 @@ const UserCoin: React.FC<Props> = ({
   setUserPortfolio,
   toggleModal,
   userCoin,
+  propIndex,
 }) => {
   const navigate = useNavigate();
+
   const deleteCoin = (e: React.SyntheticEvent) => {
     e.stopPropagation();
 
     setUserPortfolio((prevUserPortfolio) =>
-      prevUserPortfolio.filter((coinInPortfolio: UserCoin) => {
-        if (coinInPortfolio.id !== coin?.id) {
+      prevUserPortfolio.filter((coinInPortfolio: UserCoin, index) => {
+        if (index !== propIndex) {
           return coinInPortfolio;
         }
-        return;
+        return null;
       })
     );
   };
